@@ -1,38 +1,53 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Layout } from './components/Layout';
-import { ErrorBoundary } from './components/ErrorBoundary';
-import { SkeletonPage, SkeletonTable, SkeletonDetail } from './components/Skeleton';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+import Layout from './components/Layout';
+import ErrorBoundary from './components/common/ErrorBoundary';
 
-const Dashboard = lazy(() => import('./pages/Dashboard').then(m => ({ default: m.Dashboard })));
-const RecipeList = lazy(() => import('./pages/RecipeList').then(m => ({ default: m.RecipeList })));
-const RecipeDetail = lazy(() => import('./pages/RecipeDetail').then(m => ({ default: m.RecipeDetail })));
-const PluginList = lazy(() => import('./pages/PluginList').then(m => ({ default: m.PluginList })));
-const PluginDetail = lazy(() => import('./pages/PluginDetail').then(m => ({ default: m.PluginDetail })));
+const Dashboard = lazy(() => import('./pages/Dashboard'));
+const PluginList = lazy(() => import('./pages/PluginList'));
+const PluginDetail = lazy(() => import('./pages/PluginDetail'));
+const RecipeList = lazy(() => import('./pages/RecipeList'));
+const RecipeDetail = lazy(() => import('./pages/RecipeDetail'));
+const NotFound = lazy(() => import('./pages/NotFound'));
+
+const BASE = import.meta.env.BASE_URL;
+
+function Loading() {
+  return (
+    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', py: 10 }}>
+      <CircularProgress />
+    </Box>
+  );
+}
+
+function AppRoutes() {
+  const location = useLocation();
+  return (
+    <Layout>
+      <ErrorBoundary>
+        <Suspense fallback={<Loading />}>
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/plugins" element={<PluginList />} />
+            <Route path="/plugins/:name" element={<PluginDetail key={location.pathname} />} />
+            <Route path="/recipes" element={<RecipeList />} />
+            <Route path="/recipes/:id" element={<RecipeDetail key={location.pathname} />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
+      </ErrorBoundary>
+    </Layout>
+  );
+}
 
 function App() {
-    return (
-        <BrowserRouter>
-            <Layout>
-                <ErrorBoundary>
-                    <Routes>
-                        <Route path="/" element={<Suspense fallback={<SkeletonPage />}><Dashboard /></Suspense>} />
-                        <Route path="/plugins" element={<Suspense fallback={<SkeletonTable />}><PluginList /></Suspense>} />
-                        <Route
-                            path="/plugins/:name"
-                            element={
-                                <Suspense fallback={<SkeletonDetail />}>
-                                    <PluginDetail />
-                                </Suspense>
-                            }
-                        />
-                        <Route path="/recipes" element={<Suspense fallback={<SkeletonTable />}><RecipeList /></Suspense>} />
-                        <Route path="/recipes/:id" element={<Suspense fallback={<SkeletonDetail />}><RecipeDetail /></Suspense>} />
-                    </Routes>
-                </ErrorBoundary>
-            </Layout>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter basename={BASE}>
+      <AppRoutes />
+    </BrowserRouter>
+  );
 }
 
 export default App;

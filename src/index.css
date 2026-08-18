@@ -1,13 +1,7 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-
-body {
-  background-color: #15171a;
-  color: #cbd5e1;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-  background-size: 24px 24px;
-  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
 }

@@ -1,25 +1,31 @@
-import { useCallback, useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
-/** Observes `clientWidth` / `clientHeight` of a box (e.g. react-window viewport). Uses a callback ref so late-mounted nodes (after async loading) are observed. */
-export function useElementSize<T extends HTMLElement>() {
-    const [size, setSize] = useState({ width: 0, height: 0 });
-    const roRef = useRef<ResizeObserver | null>(null);
+interface Size {
+  width: number;
+  height: number;
+}
 
-    const ref = useCallback((el: T | null) => {
-        roRef.current?.disconnect();
-        roRef.current = null;
-        if (!el) {
-            setSize({ width: 0, height: 0 });
-            return;
-        }
-        const measure = () => {
-            setSize({ width: el.clientWidth, height: el.clientHeight });
-        };
-        measure();
-        const ro = new ResizeObserver(measure);
-        ro.observe(el);
-        roRef.current = ro;
-    }, []);
+export function useElementSize<T extends HTMLElement = HTMLDivElement>(): [React.RefObject<T | null>, Size] {
+  const ref = useRef<T | null>(null);
+  const [size, setSize] = useState<Size>({ width: 0, height: 0 });
 
-    return { ref, width: size.width, height: size.height };
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    const observer = new ResizeObserver((entries) => {
+      const entry = entries[0];
+      if (entry) {
+        setSize({
+          width: entry.contentRect.width,
+          height: entry.contentRect.height,
+        });
+      }
+    });
+
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
+  return [ref, size];
 }
