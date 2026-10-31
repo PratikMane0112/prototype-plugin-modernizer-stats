@@ -169,7 +169,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           <Box sx={{ mt: 3 }}>
             <jio-footer
               property="https://plugins.jenkins.io/"
-              githubRepo="jenkins-infra/plugin-modernizer-stats"
+              githubRepo="PratikMane0112/prototype-plugin-modernizer-stats"
               githubBranch="main"
             />
           </Box>
