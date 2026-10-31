@@ -63,7 +63,7 @@ export default function Layout({ children }: { children: ReactNode }) {
             sx={{ width: 80, height: 110, flexShrink: 0 }}
           />
           <Box sx={{ fontWeight: 800, fontSize: '1.3rem', color: 'text.primary', lineHeight: 1.2 }}>
-            Preview - Jenkins Plugin Modernizer Statistics
+            Preview Jenkins Plugin Modernizer Statistics
           </Box>
         </Box>
         <Box sx={{ fontSize: '0.90rem', color: 'text.secondary', mt: 5, lineHeight: 1.4 }}>
@@ -139,7 +139,7 @@ export default function Layout({ children }: { children: ReactNode }) {
                   alt="Jenkins"
                   sx={{ width: 32, height: 40 }}
                 />
-                <Box sx={{ fontWeight: 700, fontSize: '1rem', color: 'text.primary' }}>preview Plugin Modernizer Stats</Box>
+                <Box sx={{ fontWeight: 700, fontSize: '1rem', color: 'text.primary' }}>Preview Plugin Modernizer Stats</Box>
               </Box>
               <IconButton
                 aria-label="Open navigation menu"
