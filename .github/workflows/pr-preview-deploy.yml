@@ -122,7 +122,12 @@ jobs:
           header: pr-preview
           number: ${{ steps.pr-info.outputs.pr-number }}
           message: |
-            <img src="https://www.jenkins.io/images/logos/jenkins/jenkins.svg" width="20" alt="Jenkins"> Plugin Modernizer Stats — PR Preview
+            <div align="center">
+            <picture><img src="https://www.jenkins.io/images/logos/jenkins/jenkins.svg" width="42" alt="Jenkins"></picture>
+            <h3>Plugin Modernizer Stats — PR Preview</h3>
+            </div>
+
+            ---
 
             | | |
             | :--- | :--- |
@@ -130,6 +135,8 @@ jobs:
             | **Preview URL** | ${{ steps.deploy-preview.outputs.preview-url }} :rocket: |
             | **Commit** | `${{ steps.pr-info.outputs.pr-head-sha }}` |
             | **Message** | ${{ steps.pr-info.outputs.pr-commit-message }} |
+
+            ---
 
             > :hourglass: _This preview is automatically updated on each commit push..._
 
@@ -150,11 +157,18 @@ jobs:
           header: pr-preview
           number: ${{ steps.pr-info.outputs.pr-number }}
           message: |
-            <img src="https://www.jenkins.io/images/logos/jenkins/jenkins.svg" width="20" alt="Jenkins"> Plugin Modernizer Stats — PR Preview
+            <div align="center">
+            <picture><img src="https://www.jenkins.io/images/logos/jenkins/jenkins.svg" width="42" alt="Jenkins"></picture>
+            <h3>Plugin Modernizer Stats — PR Preview</h3>
+            </div>
+
+            ---
 
             | | |
             | :--- | :--- |
             | **Status** | :purple_heart: Preview removed — PR merged successfully! |
+
+            ---
 
             > :tada: _Changes are now live on the production site._
 
@@ -165,10 +179,17 @@ jobs:
           header: pr-preview
           number: ${{ steps.pr-info.outputs.pr-number }}
           message: |
-            <img src="https://www.jenkins.io/images/logos/jenkins/jenkins.svg" width="20" alt="Jenkins"> Plugin Modernizer Stats — PR Preview
+            <div align="center">
+            <picture><img src="https://www.jenkins.io/images/logos/jenkins/jenkins.svg" width="42" alt="Jenkins"></picture>
+            <h3>Plugin Modernizer Stats — PR Preview</h3>
+            </div>
+
+            ---
 
             | | |
             | :--- | :--- |
             | **Status** | :wastebasket: Preview removed |
+
+            ---
 
             > :wastebasket: _The preview for this PR has been cleaned up because the pull request was closed without merging._
