@@ -122,7 +122,7 @@ jobs:
           header: pr-preview
           number: ${{ steps.pr-info.outputs.pr-number }}
           message: |
-            <table><tr><td>═══════════════════════════════════════════════════</td></tr><tr><td><img src="https://www.jenkins.io/images/logos/jenkins/jenkins.svg" width="20" alt="Jenkins"> <strong>PR Preview => Plugin Modernizer Stats</strong></td></tr><tr><td>═══════════════════════════════════════════════════</td></tr></table>
+            <table><tr><td>========================================</td></tr><tr><td><img src="https://www.jenkins.io/images/logos/jenkins/jenkins.svg" width="20" alt="Jenkins"> <strong>PR Preview => Plugin Modernizer Stats</strong></td></tr><tr><td>========================================</td></tr></table>
 
             | | |
             | :--- | :--- |
@@ -150,7 +150,7 @@ jobs:
           header: pr-preview
           number: ${{ steps.pr-info.outputs.pr-number }}
           message: |
-            <table><tr><td>═══════════════════════════════════════════════════</td></tr><tr><td><img src="https://www.jenkins.io/images/logos/jenkins/jenkins.svg" width="20" alt="Jenkins"> <strong>PR Preview => Plugin Modernizer Stats</strong></td></tr><tr><td>═══════════════════════════════════════════════════</td></tr></table>
+            <table><tr><td>========================================</td></tr><tr><td><img src="https://www.jenkins.io/images/logos/jenkins/jenkins.svg" width="20" alt="Jenkins"> <strong>PR Preview => Plugin Modernizer Stats</strong></td></tr><tr><td>========================================</td></tr></table>
 
             | | |
             | :--- | :--- |
@@ -165,7 +165,7 @@ jobs:
           header: pr-preview
           number: ${{ steps.pr-info.outputs.pr-number }}
           message: |
-            <table><tr><td>═══════════════════════════════════════════════════</td></tr><tr><td><img src="https://www.jenkins.io/images/logos/jenkins/jenkins.svg" width="20" alt="Jenkins"> <strong>PR Preview => Plugin Modernizer Stats</strong></td></tr><tr><td>═══════════════════════════════════════════════════</td></tr></table>
+            <table><tr><td>========================================</td></tr><tr><td><img src="https://www.jenkins.io/images/logos/jenkins/jenkins.svg" width="20" alt="Jenkins"> <strong>PR Preview => Plugin Modernizer Stats</strong></td></tr><tr><td>========================================</td></tr></table>
 
             | | |
             | :--- | :--- |
