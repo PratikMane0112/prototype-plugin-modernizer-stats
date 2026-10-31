@@ -101,7 +101,7 @@ jobs:
       # Deploy or remove preview
       # ──────────────────────────────────────────────────────────────────
       - name: Deploy preview
-        if: steps.pr-info.outputs.pr-action != 'closed'
+        if: steps.pr-info.outputs.pr-action == 'deploy'
         id: deploy-preview
         uses: rossjrw/pr-preview-action@873417d2df72380da1f3978378fb58560bcde976 # v1.8.2
         with:
@@ -116,7 +116,7 @@ jobs:
       # workflow_run because it never forwards pr-number to sticky-pull-request-comment.
       # See: https://github.com/rossjrw/pr-preview-action/pull/131
       - name: Comment preview URL on PR
-        if: steps.pr-info.outputs.pr-action != 'closed'
+        if: steps.pr-info.outputs.pr-action == 'deploy'
         uses: marocchino/sticky-pull-request-comment@5770ad5eb8f42dd2c4f34da00c94c5381e49af88 # v3.0.5
         with:
           header: pr-preview
@@ -134,7 +134,7 @@ jobs:
             > :hourglass: _This preview is automatically updated on each commit push..._
 
       - name: Remove preview
-        if: steps.pr-info.outputs.pr-action == 'closed'
+        if: steps.pr-info.outputs.pr-action == 'merged' || steps.pr-info.outputs.pr-action == 'closed'
         uses: rossjrw/pr-preview-action@873417d2df72380da1f3978378fb58560bcde976 # v1.8.2
         with:
           preview-branch: gh-pages
@@ -143,7 +143,22 @@ jobs:
           action: remove
           comment: false
 
-      - name: Comment preview removed on PR
+      - name: Comment preview removed (PR merged)
+        if: steps.pr-info.outputs.pr-action == 'merged'
+        uses: marocchino/sticky-pull-request-comment@5770ad5eb8f42dd2c4f34da00c94c5381e49af88 # v3.0.5
+        with:
+          header: pr-preview
+          number: ${{ steps.pr-info.outputs.pr-number }}
+          message: |
+            <img src="https://www.jenkins.io/images/logos/jenkins/jenkins.svg" width="20" alt="Jenkins"> Plugin Modernizer Stats — PR Preview
+
+            | | |
+            | :--- | :--- |
+            | **Status** | :purple_heart: Preview removed — PR merged successfully! |
+
+            > :tada: _Changes are now live on the production site._
+
+      - name: Comment preview removed (PR closed)
         if: steps.pr-info.outputs.pr-action == 'closed'
         uses: marocchino/sticky-pull-request-comment@5770ad5eb8f42dd2c4f34da00c94c5381e49af88 # v3.0.5
         with:
@@ -156,4 +171,4 @@ jobs:
             | :--- | :--- |
             | **Status** | :wastebasket: Preview removed |
 
-            > :wastebasket: _The preview for this PR has been cleaned up because the pull request has been closed!_
+            > :wastebasket: _The preview for this PR has been cleaned up because the pull request was closed without merging._
