@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import MuiLink from '@mui/material/Link';
 import { colors } from '../../theme';
-import { shortRecipeName } from '../../util/recipeStatus';
+import { computeSuccessRate, shortRecipeName } from '../../util/recipeStatus';
 
 const cardSx = {
   bgcolor: colors.bg.paper,
@@ -47,8 +47,8 @@ export default function TopFailingRecipes({ recipes }: TopFailingRecipesProps) {
         {recipes.map((recipe) => {
           const shortName = shortRecipeName(recipe.recipeId);
           const completed = recipe.successCount + recipe.failureCount;
-          const successPct = completed > 0 ? (recipe.successCount / completed) * 100 : 0;
-          const failPct = completed > 0 ? (recipe.failureCount / completed) * 100 : 0;
+          const successPct = computeSuccessRate(recipe);
+          const failPct = completed > 0 ? 100 - successPct : 0;
           return (
             <Box key={recipe.recipeId} sx={{ flex: '1 1 200px', minWidth: 0 }}>
               <Box

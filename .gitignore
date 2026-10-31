@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Build-time fetched data
+public/data/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -22,9 +25,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-# Fetched upstream data (transient — cleaned up by consolidate.ts)
-.tmp/
-
-# Consolidated stats output (generated at build time)
-public/plugin-modernizer-stats/

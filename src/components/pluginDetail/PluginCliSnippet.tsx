@@ -1,5 +1,12 @@
 import { useMemo, useState, useCallback } from 'react';
-import { ContentCopyOutlined, CheckOutlined, TerminalOutlined, OpenInNewOutlined, ExpandMoreOutlined, ExpandLessOutlined } from '@mui/icons-material';
+import {
+  ContentCopyOutlined,
+  CheckOutlined,
+  TerminalOutlined,
+  OpenInNewOutlined,
+  ExpandMoreOutlined,
+  ExpandLessOutlined,
+} from '@mui/icons-material';
 import { Box, Typography, IconButton, Tooltip, Link, Collapse, Button, alpha } from '@mui/material';
 import type { Migration } from '../../types';
 import { colors } from '../../theme';
@@ -75,7 +82,9 @@ function CopyableCommand({ command, label }: CopyableCommandProps) {
             '&::-webkit-scrollbar-thumb': { bgcolor: colors.border.hover, borderRadius: 2 },
           }}
         >
-          <Box component="span" sx={{ color: colors.success.dark }}>$</Box>{' '}
+          <Box component="span" sx={{ color: colors.success.dark }}>
+            $
+          </Box>{' '}
           {command}
         </Typography>
         <Tooltip title={copied ? 'Copied!' : 'Copy command'} arrow placement="top">
@@ -135,9 +144,7 @@ export default function PluginCliSnippet({ pluginName, migrations }: PluginCliSn
       <Box sx={{ px: { xs: 2, sm: 3 }, pt: 2.5, pb: 2 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75, mb: 1 }}>
           <TerminalOutlined sx={{ fontSize: 18, color: colors.text.muted }} />
-          <Typography sx={{ fontSize: '1.125rem', fontWeight: 600, color: colors.text.dark }}>
-            CLI Command
-          </Typography>
+          <Typography sx={{ fontSize: '1.125rem', fontWeight: 600, color: colors.text.dark }}>CLI Command</Typography>
           <Link
             href={PLUGIN_MODERNIZER_TOOL_README_URL}
             target="_blank"
@@ -165,12 +172,12 @@ export default function PluginCliSnippet({ pluginName, migrations }: PluginCliSn
           onClick={() => setExpanded(!expanded)}
           endIcon={expanded ? <ExpandLessOutlined /> : <ExpandMoreOutlined />}
           sx={{
-            color: colors.cyan.dark,
+            color: colors.warning.dark,
             textTransform: 'none',
             fontSize: '0.85rem',
             mt: 0.5,
             pl: 0,
-            '&:hover': { bgcolor: 'transparent', color: colors.warning.dark },
+            '&:hover': { bgcolor: 'transparent', color: colors.warning.light },
           }}
         >
           {expanded ? 'Hide' : 'Show'} per recipe commands for this plugin ({recipes.length})
@@ -178,19 +185,14 @@ export default function PluginCliSnippet({ pluginName, migrations }: PluginCliSn
         <Collapse in={expanded}>
           <Box sx={{ mt: 0.5 }}>
             {recipes.map(({ recipeName, displayName }) => (
-              <CopyableCommand
-                key={recipeName}
-                command={buildCommand(pluginName, [recipeName])}
-                label={displayName}
-              />
+              <CopyableCommand key={recipeName} command={buildCommand(pluginName, [recipeName])} label={displayName} />
             ))}
           </Box>
         </Collapse>
 
         <Typography sx={{ fontSize: '0.85rem', color: colors.text.muted, mt: 0.75 }}>
-          Uses <code style={{ color: colors.warning.dark, fontSize: '0.8rem' }}>dry-run</code>, replace
-          with <code style={{ color: colors.warning.dark, fontSize: '0.8rem' }}>run</code> to apply changes and open
-          PRs.
+          Uses <code style={{ color: colors.warning.dark, fontSize: '0.8rem' }}>dry-run</code>, replace with{' '}
+          <code style={{ color: colors.warning.dark, fontSize: '0.8rem' }}>run</code> to apply changes and open PRs.
         </Typography>
       </Box>
     </Box>

@@ -72,7 +72,6 @@ function RecipeHeader({ recipe }: { recipe: RecipeReport }) {
           >
             {recipe.recipeId}
           </Typography>
-
         </Box>
 
         <Box sx={{ display: 'flex', gap: 1, flexShrink: 0 }}>

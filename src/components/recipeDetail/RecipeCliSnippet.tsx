@@ -1,5 +1,12 @@
 import { useMemo, useState, useCallback } from 'react';
-import { ContentCopyOutlined, CheckOutlined, TerminalOutlined, OpenInNewOutlined, ExpandMoreOutlined, ExpandLessOutlined } from '@mui/icons-material';
+import {
+  ContentCopyOutlined,
+  CheckOutlined,
+  TerminalOutlined,
+  OpenInNewOutlined,
+  ExpandMoreOutlined,
+  ExpandLessOutlined,
+} from '@mui/icons-material';
 import { Box, Typography, IconButton, Tooltip, Collapse, Button, Link, alpha } from '@mui/material';
 import type { RecipeReport } from '../../types';
 import { colors } from '../../theme';
@@ -67,7 +74,9 @@ function CopyableCommand({ command, label }: CopyableCommandProps) {
             '&::-webkit-scrollbar-thumb': { bgcolor: colors.border.hover, borderRadius: 2 },
           }}
         >
-          <Box component="span" sx={{ color: colors.success.dark }}>$</Box>{' '}
+          <Box component="span" sx={{ color: colors.success.dark }}>
+            $
+          </Box>{' '}
           {command}
         </Typography>
         <Tooltip title={copied ? 'Copied!' : 'Copy command'} arrow placement="top">
@@ -99,10 +108,7 @@ export default function RecipeCliSnippet({ recipe }: RecipeCliSnippetProps) {
 
   const recipeName = shortRecipeName(recipe.recipeId);
 
-  const pluginNames = useMemo(
-    () => [...new Set(recipe.plugins.map((p) => p.pluginName))].sort(),
-    [recipe.plugins],
-  );
+  const pluginNames = useMemo(() => [...new Set(recipe.plugins.map((p) => p.pluginName))].sort(), [recipe.plugins]);
 
   if (pluginNames.length === 0) return null;
 
@@ -120,9 +126,7 @@ export default function RecipeCliSnippet({ recipe }: RecipeCliSnippetProps) {
       <Box sx={{ px: { xs: 2, sm: 3 }, pt: 2.5, pb: 2 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75, mb: 1 }}>
           <TerminalOutlined sx={{ fontSize: 18, color: colors.text.muted }} />
-          <Typography sx={{ fontSize: '1.125rem', fontWeight: 600, color: colors.text.dark }}>
-            CLI Command
-          </Typography>
+          <Typography sx={{ fontSize: '1.125rem', fontWeight: 600, color: colors.text.dark }}>CLI Command</Typography>
           <Link
             href={PLUGIN_MODERNIZER_TOOL_README_URL}
             target="_blank"
@@ -139,7 +143,7 @@ export default function RecipeCliSnippet({ recipe }: RecipeCliSnippetProps) {
             }}
           >
             plugin-modernizer-tool
-            <OpenInNewOutlined sx={{ fontSize: 15 }} />
+            <OpenInNewOutlined sx={{ fontSize: 11 }} />
           </Link>
         </Box>
 
@@ -150,12 +154,12 @@ export default function RecipeCliSnippet({ recipe }: RecipeCliSnippetProps) {
           onClick={() => setExpanded(!expanded)}
           endIcon={expanded ? <ExpandLessOutlined /> : <ExpandMoreOutlined />}
           sx={{
-            color: colors.cyan.dark,
+            color: colors.warning.dark,
             textTransform: 'none',
             fontSize: '0.85rem',
             mt: 0.5,
             pl: 0,
-            '&:hover': { bgcolor: 'transparent', color: colors.warning.dark },
+            '&:hover': { bgcolor: 'transparent', color: colors.warning.light },
           }}
         >
           {expanded ? 'Hide' : 'Show'} per-plugin commands for this recipe ({pluginNames.length})
@@ -173,9 +177,8 @@ export default function RecipeCliSnippet({ recipe }: RecipeCliSnippetProps) {
         </Collapse>
 
         <Typography sx={{ fontSize: '0.85rem', color: colors.text.muted, mt: 0.75 }}>
-          Uses <code style={{ color: colors.warning.dark, fontSize: '0.8rem' }}>dry-run</code>, replace
-          with <code style={{ color: colors.warning.dark, fontSize: '0.8rem' }}>run</code> to apply changes and open
-          PRs.
+          Uses <code style={{ color: colors.warning.dark, fontSize: '0.8rem' }}>dry-run</code>, replace with{' '}
+          <code style={{ color: colors.warning.dark, fontSize: '0.8rem' }}>run</code> to apply changes and open PRs.
         </Typography>
       </Box>
     </Box>

@@ -1,9 +1,10 @@
-import { Box, Typography, TextField, InputAdornment } from '@mui/material';
+import { useRef } from 'react';
+import { Box, IconButton, InputAdornment, TextField, Typography } from '@mui/material';
 import { alpha } from '@mui/material/styles';
+import { Clear, SearchOutlined } from '@mui/icons-material';
 import type { RateTier } from '../../util/recipeStatus';
 import { RATE_CARD_DEFS } from '../../util/recipeStatus';
 import { colors, rateTierColorMap } from '../../theme';
-import { SearchOutlined } from '@mui/icons-material';
 
 interface RecipeSearchBarProps {
   search: string;
@@ -20,9 +21,17 @@ export default function RecipeSearchBar({
   onClearFilter,
   resultCount,
 }: RecipeSearchBarProps) {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleClear = () => {
+    onSearchChange('');
+    inputRef.current?.focus();
+  };
+
   return (
     <Box sx={{ display: 'flex', gap: { xs: 1, sm: 2 }, flexWrap: 'wrap', alignItems: 'center' }}>
       <TextField
+        inputRef={inputRef}
         size="small"
         placeholder="Search a recipe…"
         value={search}
@@ -34,6 +43,20 @@ export default function RecipeSearchBar({
                 <SearchOutlined sx={{ color: colors.text.muted, fontSize: 20 }} />
               </InputAdornment>
             ),
+            endAdornment: search ? (
+              <InputAdornment position="end">
+                <IconButton
+                  size="small"
+                  onClick={handleClear}
+                  onMouseDown={(e) => e.preventDefault()}
+                  aria-label="Clear search input"
+                  edge="end"
+                  sx={{ color: colors.text.muted, p: 0.5 }}
+                >
+                  <Clear sx={{ fontSize: 16 }} />
+                </IconButton>
+              </InputAdornment>
+            ) : null,
           },
         }}
         sx={{

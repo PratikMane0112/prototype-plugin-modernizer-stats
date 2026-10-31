@@ -7,7 +7,7 @@
     "node": ">=24"
   },
   "scripts": {
-    "fetch-metadata": "bash scripts/fetch-metadata.sh",
+    "fetch-metadata": "node scripts/fetch-metadata.js",
     "dev": "vite",
     "build": "tsc -b && vite build && cp dist/index.html dist/404.html",
     "lint": "eslint .",
