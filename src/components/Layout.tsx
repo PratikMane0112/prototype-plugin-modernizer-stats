@@ -140,7 +140,7 @@ export default function Layout({ children }: { children: ReactNode }) {
                   sx={{ width: 32, height: 40 }}
                 />
                 <Box sx={{ fontWeight: 700, fontSize: '1rem', color: 'text.primary' }}>
-                  Plugin Modernizer Stats Preview
+                  Plugin Modernizer Stats Preview Second
                 </Box>
               </Box>
               <IconButton
