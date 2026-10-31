@@ -160,6 +160,10 @@ jobs:
         uses: actions/checkout@v7
         with:
           ref: refs/pull/${{ steps.pr-info.outputs.pr-number }}/head
+          # Safe to opt in: this workflow has read-only permissions, no
+          # secrets are passed to build steps, and the deploy workflow
+          # (which has write access) never executes fork-provided code.
+          allow-unsafe-pr-checkout: true
 
       - name: Setup Node.js
         if: steps.pr-info.outputs.pr-action != 'closed'
