@@ -122,10 +122,7 @@ jobs:
           header: pr-preview
           number: ${{ steps.pr-info.outputs.pr-number }}
           message: |
-            =========================================
-            <h3><img src="https://www.jenkins.io/images/logos/jenkins/jenkins.svg" width="20" alt="Jenkins"> PR Preview => Plugin Modernizer Stats</h3>
-
-            =========================================
+            <table><tr><td><img src="https://www.jenkins.io/images/logos/jenkins/jenkins.svg" width="20" alt="Jenkins"></td><td><strong>PR Preview => Plugin Modernizer Stats</strong></td></tr></table>
 
             | | |
             | :--- | :--- |
@@ -137,7 +134,7 @@ jobs:
             > :hourglass: _This preview is automatically updated on each commit push..._
 
       - name: Remove preview
-        if: steps.pr-info.outputs.pr-action == 'merged' || steps.pr-info.outputs.pr-action == 'closed'
+        if: ${{ steps.pr-info.outputs.pr-action == 'merged' || steps.pr-info.outputs.pr-action == 'closed' }}
         uses: rossjrw/pr-preview-action@873417d2df72380da1f3978378fb58560bcde976 # v1.8.2
         with:
           preview-branch: gh-pages
@@ -153,10 +150,7 @@ jobs:
           header: pr-preview
           number: ${{ steps.pr-info.outputs.pr-number }}
           message: |
-            =========================================
-            <h3><img src="https://www.jenkins.io/images/logos/jenkins/jenkins.svg" width="20" alt="Jenkins"> PR Preview => Plugin Modernizer Stats</h3>
-
-            =========================================
+            <table><tr><td><img src="https://www.jenkins.io/images/logos/jenkins/jenkins.svg" width="20" alt="Jenkins"></td><td><strong>PR Preview => Plugin Modernizer Stats</strong></td></tr></table>
 
             | | |
             | :--- | :--- |
@@ -171,10 +165,7 @@ jobs:
           header: pr-preview
           number: ${{ steps.pr-info.outputs.pr-number }}
           message: |
-            =========================================
-            <h3><img src="https://www.jenkins.io/images/logos/jenkins/jenkins.svg" width="20" alt="Jenkins"> PR Preview => Plugin Modernizer Stats</h3>
-
-            =========================================
+            <table><tr><td><img src="https://www.jenkins.io/images/logos/jenkins/jenkins.svg" width="20" alt="Jenkins"></td><td><strong>PR Preview => Plugin Modernizer Stats</strong></td></tr></table>
 
             | | |
             | :--- | :--- |
