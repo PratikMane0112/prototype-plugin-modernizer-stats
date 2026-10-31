@@ -123,7 +123,7 @@ jobs:
           number: ${{ steps.pr-info.outputs.pr-number }}
           message: |
             =========================================
-            <h3><img src="https://www.jenkins.io/images/logos/jenkins/jenkins.svg" width="32" alt="Jenkins"> PR Preview => Plugin Modernizer Stats</h3>
+            <h3><img src="https://www.jenkins.io/images/logos/jenkins/jenkins.svg" width="20" alt="Jenkins"> PR Preview => Plugin Modernizer Stats</h3>
 
             =========================================
 
@@ -154,7 +154,7 @@ jobs:
           number: ${{ steps.pr-info.outputs.pr-number }}
           message: |
             =========================================
-            <h3><img src="https://www.jenkins.io/images/logos/jenkins/jenkins.svg" width="32" alt="Jenkins"> PR Preview => Plugin Modernizer Stats</h3>
+            <h3><img src="https://www.jenkins.io/images/logos/jenkins/jenkins.svg" width="20" alt="Jenkins"> PR Preview => Plugin Modernizer Stats</h3>
 
             =========================================
 
@@ -172,7 +172,7 @@ jobs:
           number: ${{ steps.pr-info.outputs.pr-number }}
           message: |
             =========================================
-            <h3><img src="https://www.jenkins.io/images/logos/jenkins/jenkins.svg" width="32" alt="Jenkins"> PR Preview => Plugin Modernizer Stats</h3>
+            <h3><img src="https://www.jenkins.io/images/logos/jenkins/jenkins.svg" width="20" alt="Jenkins"> PR Preview => Plugin Modernizer Stats</h3>
 
             =========================================
 
