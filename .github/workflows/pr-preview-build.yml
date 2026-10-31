@@ -151,9 +151,9 @@ jobs:
 
       # ──────────────────────────────────────────────────────────────────
       # STEP 2: Build the preview
-      # Uses refs/pull/N/head to checkout the PR merge ref — this is
-      # safe because this workflow has read-only permissions and never
-      # exposes secrets to fork-provided code.
+      # Uses refs/pull/N/head to checkout the PR code — this is safe
+      # because this workflow has read-only permissions and never exposes
+      # secrets to fork-provided code.
       # ──────────────────────────────────────────────────────────────────
       - name: Checkout PR code
         if: steps.pr-info.outputs.pr-action != 'closed'
