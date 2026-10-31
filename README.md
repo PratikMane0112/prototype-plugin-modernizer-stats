@@ -2,7 +2,7 @@
 
 <img src="public/jenkins.svg" alt="Jenkins Logo" width="100" />
 
-# Plugin Modernizer Stats
+# Plugin Modernizer Stats (Prototype)
 
 </div>
 
